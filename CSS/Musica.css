@@ -1,0 +1,68 @@
+body {
+    background-image: url(../images/arte-de-estrellas-en-el-cielo_2560x1440_7939.webp);
+}
+
+h1 {
+    color: white;
+    font-size: 301%;
+    text-align: center;
+}
+
+h1:hover {
+    font-size: 351%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: fit-content;
+    display: flex;
+    gap: 20px;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+
+div {width: 880px;
+margin: 10px auto;
+}
+
+.caja {
+    border: 2px solid rgb(198, 154, 72);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.caja:hover {background-color: rgb(198, 154, 72);}
+
+.caja a {
+    color: white;         
+    font-size: 22px;      
+    text-decoration: none; 
+    font-weight: bold;    
+}
+
+
+.videos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 80%;
+    margin: 40px auto;
+}
+
+.videos {
+    width: 100%;
+    height: 250px;
+    border: none;
+    border-radius: 10px;
+}

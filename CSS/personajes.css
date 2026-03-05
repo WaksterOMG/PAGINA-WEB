@@ -1,0 +1,101 @@
+body {
+    background-image: url(../images/arte-de-estrellas-en-el-cielo_2560x1440_7939.webp);
+}
+
+h1 {
+    color: white;
+    font-size: 301%;
+    text-align: center;
+}
+
+h1:hover {
+    font-size: 351%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: fit-content;
+    display: flex;
+    gap: 20px;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+
+div {width: 880px;
+margin: 10px auto;
+}
+
+.caja {
+    border: 2px solid rgb(198, 154, 72);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.caja:hover {background-color: rgb(198, 154, 72);}
+
+.caja a {
+    color: white;         
+    font-size: 22px;      
+    text-decoration: none; 
+    font-weight: bold;    
+}
+
+
+.contenedor-personajes {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    margin: 40px auto;
+}
+
+
+.personaje {
+    width: 45%;
+}
+
+
+.personaje img {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.Emma, .Reynols {
+    color: white;
+}
+
+
+.reynols-box {
+    text-align: left;
+}
+
+.keith {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 20px 0 10px 0;
+}
+
+.Keith {
+    color: white;
+    text-align: left;
+}
+
+video {
+  display: block;
+  margin: 0 auto;
+}
