@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RobotALMI — Documentación Reto 5</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/nav-hero.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Sistema de idiomas (ocultar/mostrar .lang-content) -->
+  <style>
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- =============================================
+     BARRA DE PROGRESO DE SCROLL
+============================================= -->
+<div class="progress-bar" id="progressBar"></div>
+
+
+<!-- =============================================
+     NAVEGACIÓN
+============================================= -->
+<nav>
+  <a href="#top" class="nav-logo">
+    <span class="logo-dot"></span>
+    RobotALMI
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#resumen">Resumen</a></li>
+    <li><a href="#procedimiento">Procedimiento</a></li>
+    <li><a href="#problemas">Problemas</a></li>
+    <li><a href="#conclusiones">Conclusiones</a></li>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn"        onclick="setLang('eu')">EU</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+  </ul>
+
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- =============================================
+     HERO
+============================================= -->
+<div id="top" class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-badge">● SMR1 · Reto 5 · Centro ALMI Bilbao</div>
+
+    <!-- Título en cada idioma -->
+    <div class="lang-content active" id="lang-es-hero">
+      <h1>RobotALMI —<br><span class="accent">Documentación</span></h1>
+      <p class="hero-sub">Reto 5: Montaje, programación, red WiFi segura y campaña de marketing</p>
+    </div>
+    <div class="lang-content" id="lang-eu-hero">
+      <h1>RobotALMI —<br><span class="accent">Dokumentazioa</span></h1>
+      <p class="hero-sub">5. Erronka: Muntaia, programazioa, WiFi sare segurua eta marketing kanpaina</p>
+    </div>
+    <div class="lang-content" id="lang-en-hero">
+      <h1>RobotALMI —<br><span class="accent">Documentation</span></h1>
+      <p class="hero-sub">Challenge 5: Assembly, programming, secure WiFi network and marketing campaign</p>
+    </div>
+
+    <!-- Metadatos del proyecto -->
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_equipo">Equipo</span>
+        <!-- ✏️ EDITA: pon los nombres reales de tu grupo -->
+        <span class="meta-value">Nombre 1, Nombre 2, Nombre 3</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_modulos">Módulos</span>
+        <span class="meta-value" id="meta_mods">SO · Redes · Montaje · Seguridad · Inglés · Digitalización</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_duracion">Duración</span>
+        <span class="meta-value" id="meta_dur">330 h · 11 semanas</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_curso">Curso</span>
+        <span class="meta-value">2025–2026</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =============================================
+     LAYOUT: SIDEBAR + CONTENIDO
+============================================= -->
+<div class="doc-layout">
+
+  <!-- SIDEBAR / ÍNDICE -->
+  <aside class="sidebar">
+    <p class="sidebar-title" id="idx_titulo">Índice</p>
+    <ul class="sidebar-nav" id="sidebarNav">
+      <li><a href="#resumen">
+        <span class="sidebar-num">—</span>
+        <span id="idx_resumen">Resumen</span>
+      </a></li>
+
+      <div class="sidebar-divider"></div>
+
+      <li><a href="#procedimiento">
+        <span class="sidebar-num">—</span>
+        <span id="idx_proc">Procedimiento</span>
+      </a></li>
+      <li><a href="#paso1" style="padding-left:1.5rem; font-size:0.78rem;">
+        <span class="sidebar-num">01</span>
+        <span id="idx_p1">Montaje de robots</span>
+      </a></li>
+      <li><a href="#paso2" style="padding-left:1.5rem; font-size:0.78rem;">
+        <span class="sidebar-num">02</span>
+        <span id="idx_p2">Red WiFi segura</span>
+      </a></li>
+      <li><a href="#paso3" style="padding-left:1.5rem; font-size:0.78rem;">
+        <span class="sidebar-num">03</span>
+        <span id="idx_p3">Programación Arduino</span>
+      </a></li>
+      <li><a href="#paso4" style="padding-left:1.5rem; font-size:0.78rem;">
+        <span class="sidebar-num">04</span>
+        <span id="idx_p4">Servidor web</span>
+      </a></li>
+      <li><a href="#paso5" style="padding-left:1.5rem; font-size:0.78rem;">
+        <span class="sidebar-num">05</span>
+        <span id="idx_p5">Contenido multimedia</span>
+      </a></li>
+      <li><a href="#paso6" style="padding-left:1.5rem; font-size:0.78rem;">
+        <span class="sidebar-num">06</span>
+        <span id="idx_p6">Competición</span>
+      </a></li>
+
+      <div class="sidebar-divider"></div>
+
+      <li><a href="#problemas">
+        <span class="sidebar-num">—</span>
+        <span id="idx_prob">Problemas</span>
+      </a></li>
+
+      <div class="sidebar-divider"></div>
+
+      <li><a href="#conclusiones">
+        <span class="sidebar-num">—</span>
+        <span id="idx_conc">Conclusiones</span>
+      </a></li>
+    </ul>
+  </aside>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="doc-content">
+
+
+    <!-- =========================================
+         RESUMEN
+    ========================================= -->
+    <div class="doc-section" id="resumen">
+      <div class="sec-label" id="lbl_resumen_sec">Resumen del proyecto</div>
+
+      <div class="lang-content active" id="lang-es-resumen-h">
+        <h2 class="sec-title"><span class="hl-v">Resumen</span></h2>
+      </div>
+      <div class="lang-content" id="lang-eu-resumen-h">
+        <h2 class="sec-title"><span class="hl-v">Laburpena</span></h2>
+      </div>
+      <div class="lang-content" id="lang-en-resumen-h">
+        <h2 class="sec-title"><span class="hl-v">Summary</span></h2>
+      </div>
+
+      <!-- ✏️ EDITA: escribe el resumen del proyecto en cada idioma -->
+      <div class="resumen-box">
+        <div class="lang-content active" id="lang-es-resumen">
+          <strong>Escribe aquí vuestro resumen.</strong> Explicad brevemente en qué ha consistido el reto:
+          qué robots montasteis, qué configurasteis, qué programasteis y cómo fue el proceso general.
+          ¿Fue complicado? ¿Qué destacaríais? Este apartado es como la introducción del PDF del Reto 3
+          — un párrafo corto que lo resume todo.
+        </div>
+        <div class="lang-content" id="lang-eu-resumen">
+          <strong>Idatzi hemen zuen laburpena.</strong> Azaldu labur zein izan den erronkaren edukia:
+          zein robot muntatu dituzuen, zer konfiguratu duzuen, zer programatu duzuen eta nolakoa
+          izan den prozesu orokorra.
+        </div>
+        <div class="lang-content" id="lang-en-resumen">
+          <strong>Write your summary here.</strong> Briefly explain what the challenge involved:
+          which robots you assembled, what you configured, what you programmed,
+          and how the overall process went.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- =========================================
+         PROCEDIMIENTO
+    ========================================= -->
+    <div class="doc-section" id="procedimiento">
+      <div class="sec-label" id="lbl_proc_sec">Qué hicimos paso a paso</div>
+
+      <div class="lang-content active" id="lang-es-proc-h">
+        <h2 class="sec-title"><span class="hl-v">Procedimiento</span></h2>
+      </div>
+      <div class="lang-content" id="lang-eu-proc-h">
+        <h2 class="sec-title"><span class="hl-v">Prozedura</span></h2>
+      </div>
+      <div class="lang-content" id="lang-en-proc-h">
+        <h2 class="sec-title"><span class="hl-v">Procedure</span></h2>
+      </div>
+
+
+      <!-- PASO 1 -->
+      <div class="paso-doc" id="paso1">
+        <div class="paso-doc-header">
+          <span class="paso-n">01</span>
+          <span class="paso-titulo" id="p1_tit">Montaje de los robots</span>
+        </div>
+        <!-- ✏️ EDITA -->
+        <p class="paso-desc lang-content active" id="lang-es-p1">
+          Escribe aquí cómo montasteis los robots: OTTO NINJA, BQ Evolution y Araña.
+          Qué piezas imprimisteis en 3D, qué problemas tuvisteis al ensamblarlos,
+          si algún componente llegó roto o faltaba algo.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p1">
+          Idatzi hemen nola muntatu dituzuen robotak: OTTO NINJA, BQ Evolution eta Araña.
+          Zer pieza inprimatu dituzuen 3D-n, zer arazo izan dituzuen...
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p1">
+          Write here how you assembled the robots: OTTO NINJA, BQ Evolution and Araña.
+          Which parts you 3D-printed, what issues you had during assembly.
+        </p>
+        <!--
+          ✏️ Para añadir una foto real descomenta esto:
+          <img src="img/montaje.jpg" alt="Montaje del robot" class="doc-img">
+
+          Para añadir un placeholder mientras no tenéis foto:
+          <div class="img-placeholder"><span>🖼️</span>Foto del montaje</div>
+        -->
+      </div>
+
+
+      <!-- PASO 2 -->
+      <div class="paso-doc" id="paso2">
+        <div class="paso-doc-header">
+          <span class="paso-n">02</span>
+          <span class="paso-titulo" id="p2_tit">Configuración de la red WiFi segura</span>
+        </div>
+        <!-- ✏️ EDITA -->
+        <p class="paso-desc lang-content active" id="lang-es-p2">
+          Explica cómo configurasteis vuestra subred: cifrado WPA2, filtrado MAC, IPs fijas.
+          Si instalasteis portal cautivo, cómo hicisteis la auditoría,
+          cómo montasteis el RAID y las copias de seguridad en la nube.
+          Incluye un esquema de la red si tenéis uno.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p2">
+          Azaldu nola konfiguratu duzuen zuen subresarea: WPA2 zifratzea, MAC iragazketa, IP finkoak.
+          Ate-atari zautia, ikuskaritza, RAID eta hodei babeskopiak...
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p2">
+          Explain how you configured your subnet: WPA2 encryption, MAC filtering, fixed IPs.
+          Captive portal, security audit, RAID and cloud backups.
+        </p>
+      </div>
+
+
+      <!-- PASO 3 -->
+      <div class="paso-doc" id="paso3">
+        <div class="paso-doc-header">
+          <span class="paso-n">03</span>
+          <span class="paso-titulo" id="p3_tit">Programación Arduino y apps</span>
+        </div>
+        <!-- ✏️ EDITA -->
+        <p class="paso-desc lang-content active" id="lang-es-p3">
+          Describe cómo programasteis los robots en Arduino: el código del BQ para
+          el siguelíneas y el circuito, el código del OTTO para las peleas,
+          el de la Araña para la carrera. Cómo hicisteis las apps de móvil
+          para el control Bluetooth y el control de versiones en GitHub/GitLab.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p3">
+          Deskribatu nola programatu dituzuen robotak Arduinon.
+          BQ-ren kodea lerro-jarraipen eta zirkuituetarako, OTTO-rena borroketarako.
+          App-ak eta bertsio kontrola.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p3">
+          Describe how you programmed the robots in Arduino: BQ code for line-following
+          and circuit, OTTO code for fights, Araña code for the race.
+          Mobile apps for Bluetooth control and version control on GitHub/GitLab.
+        </p>
+      </div>
+
+
+      <!-- PASO 4 -->
+      <div class="paso-doc" id="paso4">
+        <div class="paso-doc-header">
+          <span class="paso-n">04</span>
+          <span class="paso-titulo" id="p4_tit">Instalación del servidor web</span>
+        </div>
+        <!-- ✏️ EDITA -->
+        <p class="paso-desc lang-content active" id="lang-es-p4">
+          Explica cómo instalasteis el servidor web en Linux: qué software usasteis
+          (Apache, Nginx…), cómo configurasteis la IP o el dominio,
+          cómo subisteis esta web al servidor propio y al externo.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p4">
+          Azaldu nola instalatu duzuen web zerbitzaria Linux-en:
+          zer software erabili duzuen, nola konfiguratu duzuen domeinua edo IP-a,
+          nola igo duzuen web hau.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p4">
+          Explain how you installed the web server on Linux: what software you used,
+          how you configured the IP or domain, how you uploaded this site
+          to both the own and external server.
+        </p>
+      </div>
+
+
+      <!-- PASO 5 -->
+      <div class="paso-doc" id="paso5">
+        <div class="paso-doc-header">
+          <span class="paso-n">05</span>
+          <span class="paso-titulo" id="p5_tit">Contenido multimedia e imagen de marca</span>
+        </div>
+        <!-- ✏️ EDITA -->
+        <p class="paso-desc lang-content active" id="lang-es-p5">
+          Describe el proceso de creación del logotipo, la cartelería y el vídeo de
+          presentación para YouTube. Cómo grabasteis y editasteis el vídeo,
+          cómo añadisteis los subtítulos en inglés y la voz en off.
+          También las redes sociales que abriste y cómo las gestionasteis.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p5">
+          Deskribatu logotipoaren, karteleriaren eta YouTube-ko aurkezpen-bideoaren
+          sormen prozesua. Nola grabatu eta editatu duzuen bideoa,
+          ingelesezko azpitituluak eta sare sozialak.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p5">
+          Describe the process of creating the logo, posters and the YouTube
+          presentation video. How you recorded and edited the video,
+          added the English subtitles and managed social media.
+        </p>
+      </div>
+
+
+      <!-- PASO 6 -->
+      <div class="paso-doc" id="paso6">
+        <div class="paso-doc-header">
+          <span class="paso-n">06</span>
+          <span class="paso-titulo" id="p6_tit">Competición: circuito, peleas y carrera</span>
+        </div>
+        <!-- ✏️ EDITA -->
+        <p class="paso-desc lang-content active" id="lang-es-p6">
+          Explica cómo fueron las pruebas de competición: el circuito con el BQ,
+          el siguelíneas, las peleas con el OTTO y la carrera con la Araña.
+          Cómo se comportaron los robots, si ganasteis alguna prueba,
+          qué falló y qué funcionó bien.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p6">
+          Azaldu nolakoak izan ziren lehiaketa-probak: BQ-ren zirkuitua,
+          lerro-jarraipena, OTTO-ren borrokak eta Arañaren lasterketa.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p6">
+          Explain how the competition events went: the BQ circuit, line-following,
+          OTTO fights and the Araña race. How the robots performed,
+          whether you won any event, what failed and what worked.
+        </p>
+      </div>
+
+    </div><!-- /procedimiento -->
+
+    <div class="divider"></div>
+
+
+    <!-- =========================================
+         PROBLEMAS
+    ========================================= -->
+    <div class="doc-section" id="problemas">
+      <div class="sec-label" id="lbl_prob_sec">Lo que no salió a la primera</div>
+
+      <div class="lang-content active" id="lang-es-prob-h">
+        <h2 class="sec-title">Problemas <span class="hl-r">Encontrados</span></h2>
+      </div>
+      <div class="lang-content" id="lang-eu-prob-h">
+        <h2 class="sec-title">Aurkitutako <span class="hl-r">Arazoak</span></h2>
+      </div>
+      <div class="lang-content" id="lang-en-prob-h">
+        <h2 class="sec-title">Problems <span class="hl-r">Encountered</span></h2>
+      </div>
+
+      <!--
+        ✏️ EDITA: una tarjeta por problema.
+        Cambia el icono, título, descripción y solución.
+        Copia y pega el bloque .problema-card para añadir más.
+      -->
+
+      <!-- PROBLEMA 1 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">🔧</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob1-t">Problema 1: nombre del problema</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob1-t">1. arazoa: arazoaren izena</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob1-t">Problem 1: problem name</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob1">
+          Describe qué problema tuvisteis. Por ejemplo: "Al montar el OTTO, los servos
+          no respondían correctamente. El robot se movía de forma errática..."
+        </p>
+        <p class="prob-desc lang-content" id="lang-eu-prob1">
+          Deskribatu hemen zer arazo izan duzuen.
+        </p>
+        <p class="prob-desc lang-content" id="lang-en-prob1">
+          Describe here what problem you had.
+        </p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol1">Solución: explica cómo lo resolvisteís.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol1">Konponbidea: azaldu nola konpondu duzuen.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol1">Solution: explain how you solved it.</p>
+      </div>
+
+      <!-- PROBLEMA 2 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">📡</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob2-t">Problema 2: nombre del problema</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob2-t">2. arazoa: arazoaren izena</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob2-t">Problem 2: problem name</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob2">
+          Describe el segundo problema. Por ejemplo: "La red WiFi se desconectaba
+          constantemente cuando los robots intentaban comunicarse con el móvil..."
+        </p>
+        <p class="prob-desc lang-content" id="lang-eu-prob2">Deskribatu bigarren arazoa.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob2">Describe the second problem.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol2">Solución: explica cómo lo resolvisteís.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol2">Konponbidea: azaldu nola konpondu duzuen.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol2">Solution: explain how you solved it.</p>
+      </div>
+
+      <!-- PROBLEMA 3 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">💻</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob3-t">Problema 3: nombre del problema</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob3-t">3. arazoa: arazoaren izena</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob3-t">Problem 3: problem name</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob3">Describe el tercer problema aquí.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob3">Deskribatu hirugarren arazoa.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob3">Describe the third problem here.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol3">Solución: explica cómo lo resolvisteís.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol3">Konponbidea: azaldu nola konpondu duzuen.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol3">Solution: explain how you solved it.</p>
+      </div>
+
+    </div><!-- /problemas -->
+
+    <div class="divider"></div>
+
+
+    <!-- =========================================
+         CONCLUSIONES
+    ========================================= -->
+    <div class="doc-section" id="conclusiones">
+      <div class="sec-label" id="lbl_conc_sec">Qué hemos aprendido</div>
+
+      <div class="lang-content active" id="lang-es-conc-h">
+        <h2 class="sec-title"><span class="hl-v">Conclusiones</span></h2>
+      </div>
+      <div class="lang-content" id="lang-eu-conc-h">
+        <h2 class="sec-title"><span class="hl-v">Ondorioak</span></h2>
+      </div>
+      <div class="lang-content" id="lang-en-conc-h">
+        <h2 class="sec-title"><span class="hl-v">Conclusions</span></h2>
+      </div>
+
+      <!-- Conclusión del grupo -->
+      <div class="conclusion-equipo">
+        <div class="lang-content active" id="lang-es-conc-grupo">
+          <strong>Conclusión del grupo —</strong>
+          Escribe aquí la reflexión conjunta del equipo. ¿Qué ha ido bien?
+          ¿Qué mejoraríais? ¿Qué habéis aprendido como equipo?
+          Organización, comunicación, actitud ante los problemas...
+        </div>
+        <div class="lang-content" id="lang-eu-conc-grupo">
+          <strong>Taldearen ondorioa —</strong>
+          Idatzi hemen taldearen hausnarketa: zer joan da ondo,
+          zer hobetuko zenukete, zer ikasi duzue talde gisa...
+        </div>
+        <div class="lang-content" id="lang-en-conc-grupo">
+          <strong>Group conclusion —</strong>
+          Write here the team's joint reflection. What went well?
+          What would you improve? What did you learn as a team?
+        </div>
+      </div>
+
+      <!--
+        ✏️ EDITA: una tarjeta por miembro.
+        Cambia la inicial del avatar, el nombre y el texto.
+        Copia y pega .miembro-conclusion para añadir más miembros.
+      -->
+
+      <!-- MIEMBRO 1 -->
+      <div class="miembro-conclusion">
+        <div class="miembro-header">
+          <div class="miembro-avatar">A</div><!-- ✏️ Cambia la inicial -->
+          <div>
+            <div class="miembro-nombre">Nombre 1</div><!-- ✏️ Cambia el nombre -->
+            <div class="miembro-rol" id="rol1_label">Conclusión individual</div>
+          </div>
+        </div>
+        <p class="miembro-texto lang-content active" id="lang-es-m1">
+          Escribe aquí la reflexión personal de este miembro del grupo.
+          ¿Qué ha aprendido? ¿En qué ha participado más? ¿Qué haría diferente?
+        </p>
+        <p class="miembro-texto lang-content" id="lang-eu-m1">Idatzi hemen taldekide honen hausnarketa pertsonala.</p>
+        <p class="miembro-texto lang-content" id="lang-en-m1">Write here this team member's personal reflection.</p>
+      </div>
+
+      <!-- MIEMBRO 2 -->
+      <div class="miembro-conclusion">
+        <div class="miembro-header">
+          <div class="miembro-avatar">B</div><!-- ✏️ Cambia la inicial -->
+          <div>
+            <div class="miembro-nombre">Nombre 2</div><!-- ✏️ Cambia el nombre -->
+            <div class="miembro-rol" id="rol2_label">Conclusión individual</div>
+          </div>
+        </div>
+        <p class="miembro-texto lang-content active" id="lang-es-m2">
+          Reflexión personal del segundo miembro. Qué tareas llevó principalmente,
+          qué dificultades tuvo, qué aprendizajes se lleva del reto.
+        </p>
+        <p class="miembro-texto lang-content" id="lang-eu-m2">Idatzi hemen bigarren taldekidearen hausnarketa.</p>
+        <p class="miembro-texto lang-content" id="lang-en-m2">Write here the second member's personal reflection.</p>
+      </div>
+
+      <!-- MIEMBRO 3 -->
+      <div class="miembro-conclusion">
+        <div class="miembro-header">
+          <div class="miembro-avatar">C</div><!-- ✏️ Cambia la inicial -->
+          <div>
+            <div class="miembro-nombre">Nombre 3</div><!-- ✏️ Cambia el nombre -->
+            <div class="miembro-rol" id="rol3_label">Conclusión individual</div>
+          </div>
+        </div>
+        <p class="miembro-texto lang-content active" id="lang-es-m3">
+          Reflexión personal del tercer miembro.
+          Si sois más de 3, copia este bloque y añade otro miembro.
+        </p>
+        <p class="miembro-texto lang-content" id="lang-eu-m3">Idatzi hemen hirugarren taldekidearen hausnarketa.</p>
+        <p class="miembro-texto lang-content" id="lang-en-m3">Write here the third member's personal reflection.</p>
+      </div>
+
+    </div><!-- /conclusiones -->
+
+  </main>
+</div><!-- /doc-layout -->
+
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+  <div class="footer-marca">
+    <span class="logo-dot"></span>
+    RobotALMI
+  </div>
+  <div class="footer-meta">
+    SMR1 · Centro de Estudios ALMI · Bilbao<br>
+    Reto 5 — Curso 25-26
+  </div>
+</footer>
+
+
+<!-- JS -->
+<script src="js/idiomas.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
