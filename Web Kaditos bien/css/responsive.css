@@ -1,0 +1,228 @@
+/* =============================================
+   RESPONSIVE
+   Adaptaciones para tablet y móvil
+============================================= */
+
+/* ---- TABLET (≤ 900px) ---- */
+@media (max-width: 900px) {
+
+  .doc-layout {
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .hero {
+    padding: 2.5rem 1.25rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+  }
+
+  .hero-meta {
+    gap: 1.5rem;
+  }
+}
+
+/* ---- TABLET PEQUEÑA (≤ 760px) ---- */
+@media (max-width: 760px) {
+
+  .doc-layout {
+    grid-template-columns: 1fr;
+    padding: 1.75rem 1.25rem 3rem;
+  }
+
+  /* El sidebar se convierte en índice horizontal colapsable */
+  .sidebar {
+    position: static;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-title {
+    margin-bottom: 0.6rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .sidebar-nav a {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.6rem;
+    background: var(--fondo);
+    border-radius: 6px;
+  }
+
+  .sidebar-nav a:hover,
+  .sidebar-nav a.active {
+    background: var(--verde-bg);
+    color: var(--verde);
+  }
+
+  .sidebar-divider {
+    display: none;
+  }
+
+  .sidebar-num {
+    display: none;
+  }
+
+  .img-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resumen-box,
+  .conclusion-equipo {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
+/* ---- MÓVIL (≤ 560px) ---- */
+@media (max-width: 560px) {
+
+  /* Menú de navegación desplegable */
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    top: 60px;
+    background: var(--negro);
+    padding: 2rem 1.5rem;
+    z-index: 99;
+    gap: 0.5rem;
+    overflow-y: auto;
+  }
+
+  .nav-links.open li {
+    width: 100%;
+  }
+
+  .nav-links.open a {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: block;
+    width: 100%;
+  }
+
+  .nav-links.open .lang-switcher {
+    margin-left: 0;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Hero compacto */
+  .hero {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .hero-badge {
+    font-size: 0.62rem;
+    padding: 3px 8px;
+  }
+
+  .hero-meta {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .meta-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .meta-label {
+    min-width: 80px;
+  }
+
+  /* Layout de contenido */
+  .doc-layout {
+    padding: 1.25rem 1rem 2.5rem;
+    gap: 1rem;
+  }
+
+  /* Sidebar minimizado en móvil */
+  .sidebar {
+    padding: 0.75rem;
+  }
+
+  .sidebar-nav {
+    gap: 3px;
+  }
+
+  .sidebar-nav a {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  /* Pasos y tarjetas */
+  .paso-doc,
+  .problema-card {
+    padding: 1rem 1rem 1rem 1.1rem;
+  }
+
+  .paso-doc-header,
+  .problema-header {
+    flex-wrap: wrap;
+  }
+
+  .miembro-conclusion {
+    padding: 1.1rem;
+  }
+
+  .resumen-box,
+  .conclusion-equipo {
+    padding: 1.1rem;
+    font-size: 0.875rem;
+  }
+
+  .sec-title {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-meta {
+    text-align: center;
+  }
+}
+
+/* ---- MÓVIL MUY PEQUEÑO (≤ 360px) ---- */
+@media (max-width: 360px) {
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  nav {
+    padding: 0 1rem;
+  }
+
+  .nav-logo {
+    font-size: 0.95rem;
+  }
+}

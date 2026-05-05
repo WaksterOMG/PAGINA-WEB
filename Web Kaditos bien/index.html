@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RobotALMI — Documentación Reto 5</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/nav-hero.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Sistema de idiomas -->
+  <style>
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+
+    /* Imágenes del proyecto */
+    .doc-img-wrap {
+      margin: 1.5rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border, #e2e8f0);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    .doc-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .doc-img-caption {
+      font-size: 0.78rem;
+      color: var(--muted, #94a3b8);
+      padding: 0.5rem 0.9rem;
+      background: var(--surface2, #f8fafc);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.01em;
+    }
+    .robots-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+    .robots-gallery .doc-img-wrap {
+      margin: 0;
+    }
+    @media (max-width: 700px) {
+      .robots-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a href="#top" class="nav-logo">
+    <span class="logo-dot"></span>
+    RobotALMI
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#resumen">Resumen</a></li>
+    <li><a href="#procedimiento">Procedimiento</a></li>
+    <li><a href="#problemas">Problemas</a></li>
+    <li><a href="#conclusiones">Conclusiones</a></li>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn"        onclick="setLang('eu')">EU</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<div id="top" class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">● SMR1 · Reto 5 · Centro ALMI Bilbao</div>
+
+    <div class="lang-content active" id="lang-es-hero">
+      <h1>RobotALMI —<br><span class="accent">Documentación</span></h1>
+      <p class="hero-sub">Robótica, Redes y Seguridad Informática · Abril 2026</p>
+    </div>
+    <div class="lang-content" id="lang-eu-hero">
+      <h1>RobotALMI —<br><span class="accent">Dokumentazioa</span></h1>
+      <p class="hero-sub">Robotika, Sareak eta Informazio-segurtasuna · 2026ko apirila</p>
+    </div>
+    <div class="lang-content" id="lang-en-hero">
+      <h1>RobotALMI —<br><span class="accent">Documentation</span></h1>
+      <p class="hero-sub">Robotics, Networking and Cybersecurity · April 2026</p>
+    </div>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_equipo">Equipo</span>
+        <span class="meta-value">Naroa, Miguel, Jon</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_modulos">Módulos</span>
+        <span class="meta-value" id="meta_mods">SO · Redes · Montaje · Seguridad · Inglés · Digitalización</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_duracion">Duración</span>
+        <span class="meta-value" id="meta_dur">3 semanas</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" id="lbl_curso">Curso</span>
+        <span class="meta-value">2025–2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="doc-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <p class="sidebar-title" id="idx_titulo">Índice</p>
+    <ul class="sidebar-nav" id="sidebarNav">
+      <li><a href="#resumen"><span class="sidebar-num">—</span><span id="idx_resumen">Resumen</span></a></li>
+      <div class="sidebar-divider"></div>
+      <li><a href="#procedimiento"><span class="sidebar-num">—</span><span id="idx_proc">Procedimiento</span></a></li>
+      <li><a href="#paso1" style="padding-left:1.5rem;font-size:0.78rem;"><span class="sidebar-num">01</span><span id="idx_p1">Inicio y primeras configuraciones</span></a></li>
+      <li><a href="#paso2" style="padding-left:1.5rem;font-size:0.78rem;"><span class="sidebar-num">02</span><span id="idx_p2">Montaje del Otto</span></a></li>
+      <li><a href="#paso3" style="padding-left:1.5rem;font-size:0.78rem;"><span class="sidebar-num">03</span><span id="idx_p3">Redes y seguridad</span></a></li>
+      <li><a href="#paso4" style="padding-left:1.5rem;font-size:0.78rem;"><span class="sidebar-num">04</span><span id="idx_p4">Programación</span></a></li>
+      <li><a href="#paso5" style="padding-left:1.5rem;font-size:0.78rem;"><span class="sidebar-num">05</span><span id="idx_p5">Replanificación</span></a></li>
+      <div class="sidebar-divider"></div>
+      <li><a href="#problemas"><span class="sidebar-num">—</span><span id="idx_prob">Problemas</span></a></li>
+      <div class="sidebar-divider"></div>
+      <li><a href="#conclusiones"><span class="sidebar-num">—</span><span id="idx_conc">Conclusiones</span></a></li>
+    </ul>
+  </aside>
+
+
+  <main class="doc-content">
+
+
+    <!-- RESUMEN -->
+    <div class="doc-section" id="resumen">
+      <div class="sec-label" id="lbl_resumen_sec">Resumen del proyecto</div>
+      <div class="lang-content active" id="lang-es-resumen-h"><h2 class="sec-title"><span class="hl-v">Resumen</span></h2></div>
+      <div class="lang-content" id="lang-eu-resumen-h"><h2 class="sec-title"><span class="hl-v">Laburpena</span></h2></div>
+      <div class="lang-content" id="lang-en-resumen-h"><h2 class="sec-title"><span class="hl-v">Summary</span></h2></div>
+
+      <div class="resumen-box">
+        <div class="lang-content active" id="lang-es-resumen">
+          El presente documento recoge de forma detallada el desarrollo del reto tecnológico llevado a cabo por nuestro equipo, el cual integró dos grandes áreas de trabajo: la robótica y las redes informáticas. El reto consistía en diseñar, montar y programar una serie de robots con funcionalidades específicas, así como configurar una infraestructura de red segura.
+          <br><br>
+          A lo largo de este documento se describen los objetivos planteados, las fases de desarrollo, los obstáculos encontrados y las soluciones aplicadas, así como las decisiones estratégicas adoptadas por el equipo para garantizar la finalización satisfactoria del proyecto dentro de los plazos establecidos.
+          <br><br>
+          Este reto supuso un importante ejercicio de trabajo en equipo, resolución de problemas bajo presión y adaptación ante imprevistos tanto técnicos como logísticos.
+        </div>
+        <div class="lang-content" id="lang-eu-resumen">
+          Dokumentu honek gure taldeak burututako erronka teknologikoaren garapen xehea jasotzen du. Erronkak bi lan-eremu nagusi izan zituen: robotika eta sare informatikoak. Erronkak funtzio espezifikoak zituzten hainbat robot diseinatzea, muntatzea eta programatzea eskatzen zuen, baita sare-azpiegitura seguru bat konfiguratzea ere.
+          <br><br>
+          Dokumentu honetan, proiektuaren hasieran ezarritako helburuak, garapenaren faseak, aurkitutako oztopoak eta aplikatutako soluzioak deskribatzen dira, baita taldeak proiektua epeen barruan arrakastaz bukatzeko hartu zituen erabaki estrategikoak ere.
+          <br><br>
+          Erronka honek talde-lanean, presiopean arazoak konpontzean eta ezusteko teknikoen zein logistikoen aurrean egokitzeko orduan ikasteko ariketa garrantzitsua suposatu zuen.
+        </div>
+        <div class="lang-content" id="lang-en-resumen">
+          This document provides a detailed account of the technological challenge undertaken by our team, which encompassed two major areas of work: robotics and computer networking. The challenge required the design, assembly and programming of a series of robots with specific functionalities, as well as the configuration of a secure network infrastructure.
+          <br><br>
+          Throughout this document, we describe the objectives set out at the beginning of the project, the phases of development, the obstacles encountered and the solutions applied, as well as the strategic decisions made by the team to ensure the successful completion of the project within the established deadlines.
+          <br><br>
+          This challenge proved to be a significant exercise in teamwork, problem-solving under pressure and adaptability in the face of both technical and logistical setbacks.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- PROCEDIMIENTO -->
+    <div class="doc-section" id="procedimiento">
+      <div class="sec-label" id="lbl_proc_sec">Qué hicimos paso a paso</div>
+      <div class="lang-content active" id="lang-es-proc-h"><h2 class="sec-title"><span class="hl-v">Procedimiento</span></h2></div>
+      <div class="lang-content" id="lang-eu-proc-h"><h2 class="sec-title"><span class="hl-v">Prozedura</span></h2></div>
+      <div class="lang-content" id="lang-en-proc-h"><h2 class="sec-title"><span class="hl-v">Procedure</span></h2></div>
+
+      <!-- PASO 1 -->
+      <div class="paso-doc" id="paso1">
+        <div class="paso-doc-header">
+          <span class="paso-n">01</span>
+          <span class="paso-titulo" id="p1_tit">Fase inicial: dificultades logísticas y primeras configuraciones</span>
+        </div>
+        <p class="paso-desc lang-content active" id="lang-es-p1">
+          El proyecto comenzó con una traba importante: la falta de piezas necesarias para construir el robot Otto y el robot araña. Esta carencia obligó al equipo a reajustar el orden de trabajo y concentrar los esfuerzos iniciales en los componentes disponibles: el robot sigue líneas y el módulo de ultrasonidos.
+          <br><br>
+          <strong>Módulo de ultrasonidos:</strong> resultó ser el proceso más fluido de toda la fase inicial. El equipo logró ponerlo en funcionamiento correctamente en el primer intento, lo que permitió disponer de un componente operativo desde el comienzo y ganar confianza en un contexto de inicio complicado.
+          <br><br>
+          <strong>Robot sigue líneas:</strong> su puesta a punto presentó numerosas complicaciones. Se detectaron dos problemas principales: inversión de la detección (el robot seguía la línea blanca en lugar de la negra) e interferencias de sombra (en determinadas condiciones de iluminación, detectaba su propia sombra como si fuera la línea negra). Tras múltiples ajustes en la calibración de los sensores y varios ciclos de prueba y error, se consiguió que el robot siguiera la línea negra de forma estable y precisa bajo distintas condiciones de iluminación.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p1">
+          Proiektua hasiera txar batekin hasi zen: Otto robota eta armiarma-robota eraikitzeko behar ziren piezak falta ziren. Horrek taldea lan-ordena berrantolatera behartu zuen, eta hasierako ahaleginak materiala jadanik eskuragarri zeuden osagaietan zentratu ziren: lerro-jarrailean eta ultrasoinu-moduluan.
+          <br><br>
+          <strong>Ultrasoinu modulua:</strong> konfigurazioa hasierako fasearen prozesurik bidezkoenena izan zen. Taldeak lehenengo saiakeran arrakastaz jarri zuen martxan, proiektuaren hasieratik osagai funtzional bat eskuragarri utziz eta zaila zen hasiera batean konfiantza berreskuratzen lagunduz.
+          <br><br>
+          <strong>Lerro-jarraileen robota:</strong> konfiguratzeak arazo ugari aurkeztu zituen. Bi arazo nagusi identifikatu ziren: detekzioa alderantziz (robotak lerro beltza jarraitu beharrean lerro zuria jarraitzen zuen) eta itzalaren interferentzia (argiztapen-baldintza batzuetan, robotak bere itzala lerro beltza balitz bezala detektatzen zuen). Sentsore-kalibrazio doikuntza ugari eta proba-saio anitz ondoren, robota lerro beltza fidagarriro eta zehaztasunez jarraitzeko gai zen argiztapen-baldintza desberdinetan.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p1">
+          The project got off to a difficult start due to a significant logistical issue: a shortage of components required to build the Otto robot and the spider robot. This forced the team to reorganise its workflow and focus initial efforts on the available components: the line-following robot and the ultrasound module.
+          <br><br>
+          <strong>Ultrasound module:</strong> its configuration proved to be the most straightforward process of the entire initial phase. The team successfully brought it into operation on the first attempt, providing a fully functional component from the outset and offering a much-needed boost in confidence.
+          <br><br>
+          <strong>Line-following robot:</strong> setting it up presented numerous complications. Two main issues were identified: inverted detection (the robot was following the white line instead of the black one) and shadow interference (under certain lighting conditions, the robot detected its own shadow as if it were the black line). After multiple sensor calibration adjustments and several rounds of testing and troubleshooting, the robot was eventually able to follow the black line reliably and accurately under varying lighting conditions.
+        </p>
+        <div class="doc-img-wrap">
+          <img src="img/proceso.jpg" alt="Creando el logo del proyecto en Canva" loading="lazy">
+          <div class="doc-img-caption">📸 Diseñando la identidad visual del proyecto — creación del logo Kaditos en Canva</div>
+        </div>
+      </div>
+
+      <!-- PASO 2 -->
+      <div class="paso-doc" id="paso2">
+        <div class="paso-doc-header">
+          <span class="paso-n">02</span>
+          <span class="paso-titulo" id="p2_tit">Recepción de materiales y montaje del robot Otto</span>
+        </div>
+        <p class="paso-desc lang-content active" id="lang-es-p2">
+          Cuatro días después del inicio del proyecto, llegaron las piezas necesarias para continuar con el montaje del robot Otto y del robot araña. El equipo procedió de inmediato al ensamblaje del Otto; sin embargo, durante el proceso se detectó una nueva incidencia: los motores disponibles no eran de 360 grados, requisito imprescindible para el correcto funcionamiento de las piernas del robot. Esta situación obligó a detener el montaje y esperar a la semana siguiente para recibir los componentes adecuados.
+          <br><br>
+          Este tipo de contratiempos logísticos supusieron una fuente de retrasos constante y una carga de estrés adicional para el equipo, que en múltiples ocasiones vio su avance condicionado por factores externos completamente ajenos a sus capacidades técnicas.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p2">
+          Proiektua hasi eta lau egunera, Otto eta armiarma-robota muntatzeko beharrezkoak ziren piezak iritsi ziren. Taldeak berehala hasi zen Ottoa muntatzen; hala ere, prozesuan arazo berri bat sortu zen: eskuragarri zeuden motorrak ez ziren 360 gradukoak, robotaren hankak behar bezala funtzionatzeko ezinbesteko baldintza. Horrek taldea muntaketa geldiaratera eta aste berrira arte egokiak ziren osagaiak zain egoten behartu zuen.
+          <br><br>
+          Logistikako etengabeko atzerapauso hauek taldearentzat etengabeko atzerapen-iturri eta presio gehigarria suposatu zuten, eta askotan bere aurrerapenak taldeak kontrolatu ezin zituen kanpoko faktoreen mende egon zen.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p2">
+          Four days after the project began, the parts required to continue with the Otto and spider robot assembly arrived. The team proceeded immediately with the Otto assembly; however, a new issue arose during the process: the available motors were not 360-degree motors, which are essential for the correct functioning of the robot's legs. This forced the team to halt the assembly and wait until the following week to receive the appropriate components.
+          <br><br>
+          These recurring logistical setbacks were a constant source of delays and added pressure on the team, which on multiple occasions found its progress held back by external factors entirely beyond its control.
+        </p>
+      </div>
+
+      <!-- PASO 3 -->
+      <div class="paso-doc" id="paso3">
+        <div class="paso-doc-header">
+          <span class="paso-n">03</span>
+          <span class="paso-titulo" id="p3_tit">Configuración de redes y seguridad</span>
+        </div>
+        <p class="paso-desc lang-content active" id="lang-es-p3">
+          En paralelo a las tareas de robótica, el equipo trabajó en la infraestructura de red y seguridad informática.
+          <br><br>
+          <strong>Portal cautivo en el router:</strong> se tomó un router y se configuró con un portal cautivo con el objetivo de gestionar y controlar el tráfico de red de manera centralizada. Esta solución permitió tener una mayor supervisión sobre las conexiones y los accesos dentro de la red del proyecto.
+          <br><br>
+          <strong>Implementación de RAID en Ubuntu virtualizado:</strong> se utilizó un ordenador portátil con sistema operativo Windows sobre el que se instaló VirtualBox. Dentro de la máquina virtual se desplegó un sistema Ubuntu al que se le configuró un sistema RAID, con el fin de garantizar redundancia y mayor seguridad en el almacenamiento de datos.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p3">
+          Robotikako lanen aldamenean, taldeak sare eta zibersegurtasun azpiegituran lan egin zuen.
+          <br><br>
+          <strong>Bideratzaileko atari kautiboa:</strong> bideratzaile bat atari kautibo batekin konfiguratu zen sare-trafikoaren kudeaketa eta jarraipena zentralizatzeko. Soluzio honek proiektuko sareko konexio eta sarbideen gaineko gainbegiratze handiagoa ahalbidetzen zuen.
+          <br><br>
+          <strong>RAID inplementazioa birtualizatutako Ubuntu sisteman:</strong> Windows sistema eragilea zuen ordenagailu eramangarri bat VirtualBox-en ostalari gisa erabili zen, eta bertan Ubuntu makina birtual bat zabaldu zen. Ingurune birtual horretan RAID sistema bat konfiguratu zen datuen erredundantzia bermatzeko eta biltegiratze-segurtasuna hobetzeko.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p3">
+          In parallel with the robotics tasks, the team worked on the network and cybersecurity infrastructure.
+          <br><br>
+          <strong>Captive portal on the router:</strong> a router was configured with a captive portal in order to centralise the management and monitoring of network traffic. This solution enabled greater supervision of connections and access within the project network.
+          <br><br>
+          <strong>RAID implementation on a virtualised Ubuntu system:</strong> a Windows laptop was used as the host machine for VirtualBox, on which an Ubuntu virtual machine was deployed. A RAID system was then configured within this virtual environment to ensure data redundancy and improve overall storage security.
+        </p>
+        <div class="doc-img-wrap">
+          <img src="img/miguelfoto.jpg" alt="Configurando el RAID en Ubuntu virtualizado con VirtualBox" loading="lazy">
+          <div class="doc-img-caption">📸 Configuración del sistema RAID en Ubuntu virtualizado — mdadm creando el array md0 con sdb1 y sdc1</div>
+        </div>
+      </div>
+
+      <!-- PASO 4 -->
+      <div class="paso-doc" id="paso4">
+        <div class="paso-doc-header">
+          <span class="paso-n">04</span>
+          <span class="paso-titulo" id="p4_tit">Semana decisiva: montaje completo y programación</span>
+        </div>
+        <p class="paso-desc lang-content active" id="lang-es-p4">
+          Una vez recibidas las piezas pendientes, entre ellas los motores de 360 grados y una placa base adicional, el equipo retomó el montaje con mayor impulso. En esta fase se completaron con éxito: la configuración definitiva del módulo de ultrasonidos, el robot sigue líneas y el circuito de carrera; el montaje completo del robot Otto verificando el funcionamiento individual de cada motor; y la detección y resolución de un problema de tensión excesiva en el motor de uno de los brazos del Otto.
+          <br><br>
+          Finalizado el montaje, se inició la fase de programación trabajando motor por motor y componente por componente. Durante este proceso se observó un problema de sobrecalentamiento en los motores, lo que obligó al equipo a establecer pausas periódicas para evitar daños en el hardware.
+          <br><br>
+          <strong>Incidencia con la placa base:</strong> al día siguiente de iniciada la programación, con casi todas las partes del Otto ya operativas (a excepción de una de las ruedas y la cabeza), se produjo una incidencia crítica: la placa base comenzó a emitir humo. El equipo actuó con rapidez, apagando el sistema de inmediato y dejándolo en reposo durante un tiempo prudencial. Mientras el hardware se recuperaba, el equipo aprovechó el tiempo para avanzar en tareas de marketing vinculadas al proyecto.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p4">
+          Zain zeuden piezak jaso ondoren, besteak beste 360 graduko motorrak eta plaka base gehigarri bat, taldeak berriro indar berriarekin hasi zuen muntaketa. Fase honetan arrakastaz burutu ziren: ultrasoinu moduluaren, lerro-jarraileen robotaren eta lasterketa-zirkuituaren behin betiko konfigurazioa; Otto robotaren muntaketa osoa, motor bakoitza banan-banan probatuz; eta robotaren beso bateko motorean gehiegizko tentsioaren arazo baten identifikazioa eta konponketa.
+          <br><br>
+          Muntaketa amaitutakoan, programazio-fasea hasi zen, motor eta osagai bakoitza banan-banan landuz. Prozesu honetan, motorrek bero gehiegizko sortzen zutela ikusi zen, eta taldeak aldizka atseden-tarteak planifikatu behar izan zituen hardware-kalteak saihesteko.
+          <br><br>
+          <strong>Plaka basearen matxura:</strong> programazioa hasi eta biharamunean, Ottoko ia zati guztiak funtzionatzen zutelarik, gertakizun kritiko bat gertatu zen: plaka baseak ke egiten hasi zen. Taldeak azkar erantzun zuen, sistema berehala itzaliz eta denbora luzez atseden uzten. Hardware-a berreskuratzen zen bitartean, taldeak proiektuarekin lotutako marketin-materialetan aurreratu zuen.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p4">
+          Once the outstanding parts had been received, including the 360-degree motors and an additional motherboard, the team resumed assembly with renewed momentum. During this phase, the following tasks were successfully completed: final configuration of the ultrasound module, line-following robot and racing circuit; full assembly of the Otto robot with individual motor testing; and identification and resolution of an issue involving excessive tension in one of the arm motors.
+          <br><br>
+          Once assembly was complete, the programming phase began, working through each motor and component one by one. Significant overheating was observed in the motors, which required the team to schedule regular rest periods to prevent hardware damage.
+          <br><br>
+          <strong>Motherboard failure:</strong> the day after programming began, with almost all parts of the Otto functioning correctly, a critical incident occurred: the motherboard began to emit smoke. The team reacted swiftly, immediately shutting down the system and allowing it to rest for a considerable period. While the hardware recovered, the team used the downtime productively to work on marketing materials related to the project.
+        </p>
+      </div>
+
+      <!-- PASO 5 -->
+      <div class="paso-doc" id="paso5">
+        <div class="paso-doc-header">
+          <span class="paso-n">05</span>
+          <span class="paso-titulo" id="p5_tit">Replanificación estratégica</span>
+        </div>
+        <p class="paso-desc lang-content active" id="lang-es-p5">
+          Hacia el final del período de desarrollo, surgieron algunas incidencias ajenas al proyecto que consumieron parte del tiempo del equipo. Pese a ello, el tutor realizó una auditoría del estado del proyecto y el resultado fue positivo: el proyecto fue considerado aprobado.
+          <br><br>
+          Ante este escenario, el equipo tomó una decisión estratégica consensuada: dado que el nivel mínimo de exigencia estaba cubierto, se priorizaría la mejora progresiva de la calificación mediante otras entregas y tareas complementarias, dejando el trabajo sobre los robots pendientes para la fase final en caso de que el tiempo lo permitiera. Las líneas de trabajo priorizadas fueron: gestión y actualización de redes sociales del proyecto, elaboración y mejora de la documentación técnica, y otras tareas de presentación y comunicación del proyecto.
+          <br><br>
+          Esta decisión refleja la capacidad del equipo para adaptar su estrategia ante las circunstancias, priorizando los resultados globales del proyecto por encima de la finalización de tareas específicas.
+        </p>
+        <p class="paso-desc lang-content" id="lang-eu-p5">
+          Garapen-aldiaren amaierantz, proiektuarekin loturarik ez zuten hainbat gorabehera sortu ziren eta taldeak erabilgarri zuen denboraren zati bat kontsumitu zuten. Hala ere, tutorea aurrerakuntzaren auditoria bat egin zuen eta emaitza positiboa izan zen: proiektua gainditutzat jo zen.
+          <br><br>
+          Emaitza hori ikusita, taldeak erabaki estrategiko kolektibo bat hartu zuen: gutxieneko eskakizunak betetzen zirenez, lehentasuna emango zitzaion nota progresiboki hobetzeari entrega osagarri eta zeregin osagarrien bidez, gainerako roboten lana azken fasean utziz, denbora bada. Lehenetsi ziren lan-eremuak honakoak ziren: proiektuaren sare sozialen kudeaketa eta eguneratzea, dokumentazio teknikoaren prestaketa eta hobekuntza, eta proiektuaren aurkezpen eta komunikazio-zereginen beste hainbat alderdi.
+        </p>
+        <p class="paso-desc lang-content" id="lang-en-p5">
+          Towards the end of the development period, a number of issues unrelated to the project arose and consumed part of the team's available time. Despite this, the project supervisor conducted a progress audit and the outcome was positive: the project was deemed to have met the passing standard.
+          <br><br>
+          In light of this result, the team made a collective strategic decision: since the minimum requirements had already been met, priority would be given to progressively improving the overall grade through complementary deliverables and tasks, leaving the remaining robot work for the final stage should time allow. The areas prioritised were: management and updating of the project's social media presence, preparation and improvement of technical documentation, and other project presentation and communication tasks.
+          <br><br>
+          This decision reflects the team's ability to adapt its strategy to evolving circumstances, prioritising overall project outcomes over the completion of specific individual tasks.
+        </p>
+      </div>
+
+    </div><!-- /procedimiento -->
+
+    <div class="divider"></div>
+
+
+    <!-- PROBLEMAS -->
+    <div class="doc-section" id="problemas">
+      <div class="sec-label" id="lbl_prob_sec">Lo que no salió a la primera</div>
+      <div class="lang-content active" id="lang-es-prob-h"><h2 class="sec-title">Problemas <span class="hl-r">Encontrados</span></h2></div>
+      <div class="lang-content" id="lang-eu-prob-h"><h2 class="sec-title">Aurkitutako <span class="hl-r">Arazoak</span></h2></div>
+      <div class="lang-content" id="lang-en-prob-h"><h2 class="sec-title">Problems <span class="hl-r">Encountered</span></h2></div>
+
+      <!-- P1 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">📦</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob1-t">Escasez de materiales</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob1-t">Material eskasia</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob1-t">Material shortages</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob1">La falta de piezas al inicio y durante el proyecto generó retrasos significativos, obligando al equipo a reajustar constantemente el orden de trabajo y a depender de factores externos ajenos a sus capacidades técnicas.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob1">Hasieran eta proiektuan zehar piezen faltak atzerapen handiak eragin zituen, taldea lan-ordena etengabe berrantolatzera behartu zuen.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob1">The lack of components at the start and during the project caused significant delays, forcing the team to constantly reorganise its workflow and depend on external factors beyond its control.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol1">Solución: se reajustó el orden de trabajo centrando los esfuerzos en los componentes disponibles mientras se esperaban las piezas pendientes.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol1">Konponbidea: lan-ordena berrantolatu zen, eskuragarri zeuden osagaietan ahaleginak zentratuz.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol1">Solution: the workflow was reorganised to focus efforts on the available components while waiting for the missing parts.</p>
+      </div>
+
+      <!-- P2 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">⚙️</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob2-t">Motores inadecuados</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob2-t">Motor desegokiak</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob2-t">Unsuitable motors</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob2">Los motores disponibles para el robot Otto no eran de 360 grados, requisito imprescindible para el correcto funcionamiento de sus piernas. Esto paralizó el montaje durante varios días hasta recibir los componentes correctos.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob2">Otto roboterako eskuragarri zeuden motorrak ez ziren 360 gradukoak. Horrek muntaketa egun batzuez geldiarazi zuen osagai egokiak jaso arte.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob2">The available motors for the Otto robot were not 360-degree motors, which are essential for the correct functioning of its legs. This brought the assembly to a standstill for several days until the correct components arrived.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol2">Solución: se esperó a recibir los motores de 360 grados y se aprovechó el tiempo avanzando en otras tareas del proyecto (redes, sigue líneas).</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol2">Konponbidea: 360 graduko motor egokiak jaso arte itxaron zen, eta denbora beste zereginen bidez aprobetxatu zen.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol2">Solution: the team waited for the correct 360-degree motors and used the time to advance on other project tasks.</p>
+      </div>
+
+      <!-- P3 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">🤖</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob3-t">Problemas en el sigue líneas</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob3-t">Lerro-jarraileen arazoak</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob3-t">Line-following issues</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob3">Las interferencias por sombra y la inversión de detección exigieron múltiples ciclos de calibración de los sensores bajo distintas condiciones de iluminación antes de conseguir un funcionamiento estable.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob3">Itzalaren interferentziak eta alderantzizko detekzioak kalibrazio-ziklo ugari behar izan zituzten argiztapen-baldintza desberdinetan funtzionamendu egonkorra lortu aurretik.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob3">Shadow interference and inverted detection required multiple sensor calibration cycles under varying lighting conditions before achieving stable operation.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol3">Solución: ajustes iterativos en la calibración de los sensores hasta lograr que el robot siguiera la línea negra de forma estable y precisa bajo distintas condiciones de iluminación.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol3">Konponbidea: sentsore-kalibrazioan doikuntza iteratiboak egin ziren, argiztapen-baldintza desberdinetan funtzionamendu egonkorra lortu arte.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol3">Solution: iterative adjustments to sensor calibration until the robot was able to follow the black line reliably under varying lighting conditions.</p>
+      </div>
+
+      <!-- P4 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">🌡️</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob4-t">Sobrecalentamiento de motores</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob4-t">Motorren berotzea</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob4-t">Motor overheating</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob4">La programación intensiva generó calor excesivo en los motores del robot Otto, suponiendo un riesgo real de daño permanente en el hardware.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob4">Programazio-saio intentsiboek berotze gehiegizkoa eragin zuten Otto robotaren motorrengan, hardware-kalte iraunkorraren arrisku erreala suposatuz.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob4">Intensive programming sessions generated excessive heat in the Otto robot's motors, posing a real risk of permanent hardware damage.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol4">Solución: se planificaron pausas técnicas periódicas durante los ciclos de prueba de hardware para que los motores pudieran enfriarse antes de continuar.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol4">Konponbidea: hardware-proba zikloetan aldizka atseden teknikoak planifikatu ziren motorrak hoztu ahal izateko.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol4">Solution: regular technical rest periods were scheduled during hardware testing cycles to allow the motors to cool down before continuing.</p>
+      </div>
+
+      <!-- P5 -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">💥</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob5-t">Fallo crítico de la placa base</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob5-t">Plaka basearen matxura kritikoa</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob5-t">Critical motherboard failure</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob5">Con casi todas las partes del Otto ya operativas, la placa base comenzó a emitir humo, obligando a una parada de emergencia inmediata. Fue uno de los momentos más críticos del proyecto.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob5">Otto-ko ia zati guztiak funtzionatzen zutelarik, plaka baseak ke egiten hasi zen, larrialdizko itzalketa berehala behartu zuelarik. Proiektuko une kritikoenetako bat izan zen.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob5">With almost all parts of the Otto functioning correctly, the motherboard began to emit smoke, requiring an immediate emergency shutdown. It was one of the most critical moments of the project.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol5">Solución: el equipo apagó el sistema de inmediato y lo dejó en reposo durante un tiempo prudencial. El tiempo de espera se aprovechó para avanzar en las tareas de marketing del proyecto.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol5">Konponbidea: taldeak sistema berehala itzali zuen eta denbora luzez atseden utzi zuen. Itxaronaldi hori proiektuaren marketin-materialetan aurreratzeko aprobetxatu zen.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol5">Solution: the team immediately shut down the system and allowed it to rest for a considerable period. The downtime was used productively to advance on project marketing materials.</p>
+      </div>
+
+      <!-- P6 - VirtualBox VT-x error -->
+      <div class="problema-card">
+        <div class="problema-header">
+          <span class="prob-icon">⚠️</span>
+          <span class="prob-titulo lang-content active" id="lang-es-prob6-t">Error de virtualización VT-x/AMD-V</span>
+          <span class="prob-titulo lang-content"        id="lang-eu-prob6-t">VT-x/AMD-V birtualizazio errorea</span>
+          <span class="prob-titulo lang-content"        id="lang-en-prob6-t">VT-x/AMD-V virtualisation error</span>
+        </div>
+        <p class="prob-desc lang-content active" id="lang-es-prob6">Al intentar arrancar la máquina virtual en VirtualBox, el sistema mostró un error indicando que la aceleración por hardware VT-x/AMD-V no estaba disponible. Esto impidió el arranque normal de la VM en el equipo afectado.</p>
+        <p class="prob-desc lang-content" id="lang-eu-prob6">VirtualBox-en makina birtual bat abiarazten saiatzean, sistemak errore bat erakutsi zuen VT-x/AMD-V hardware-azelerazioa ez zegoela eskuragarri adieraziz. Horrek makina birtualaren abiarazte normala eragotzi zuen.</p>
+        <p class="prob-desc lang-content" id="lang-en-prob6">When attempting to start the virtual machine in VirtualBox, the system displayed an error indicating that VT-x/AMD-V hardware acceleration was not available, preventing the VM from booting normally on the affected machine.</p>
+        <p class="prob-solucion lang-content active" id="lang-es-sol6">Solución: se habilitó la virtualización en la BIOS/UEFI del equipo y se continuó con la configuración del entorno Ubuntu para el RAID.</p>
+        <p class="prob-solucion lang-content"        id="lang-eu-sol6">Konponbidea: birtualizazioa gaituriko BIOS/UEFI-n eta Ubuntu ingurunea RAID-erako konfiguratzen jarraitu zen.</p>
+        <p class="prob-solucion lang-content"        id="lang-en-sol6">Solution: virtualisation was enabled in the BIOS/UEFI of the machine, allowing the Ubuntu environment to be configured for the RAID setup.</p>
+        <div class="doc-img-wrap" style="margin-top:1rem;">
+          <img src="img/error.jpg" alt="Error VirtualBox VT-x/AMD-V no disponible" loading="lazy">
+          <div class="doc-img-caption">📸 Error de VirtualBox — la aceleración por hardware VT-x/AMD-V no se encontraba habilitada en la BIOS</div>
+        </div>
+      </div>
+
+    </div><!-- /problemas -->
+
+    <div class="divider"></div>
+
+
+    <!-- CONCLUSIONES -->
+    <div class="doc-section" id="conclusiones">
+      <div class="sec-label" id="lbl_conc_sec">Qué hemos aprendido</div>
+      <div class="lang-content active" id="lang-es-conc-h"><h2 class="sec-title"><span class="hl-v">Conclusiones</span></h2></div>
+      <div class="lang-content" id="lang-eu-conc-h"><h2 class="sec-title"><span class="hl-v">Ondorioak</span></h2></div>
+      <div class="lang-content" id="lang-en-conc-h"><h2 class="sec-title"><span class="hl-v">Conclusions</span></h2></div>
+
+      <div class="conclusion-equipo">
+        <!-- Galería de pósters de robots -->
+        <div class="robots-gallery">
+          <div class="doc-img-wrap">
+            <img src="img/kadito.png" alt="Póster robot Kadito" loading="lazy">
+            <div class="doc-img-caption">🤖 KADITO — Peleas de Robots</div>
+          </div>
+          <div class="doc-img-wrap">
+            <img src="img/sniffer.png" alt="Póster robot Sniffer" loading="lazy">
+            <div class="doc-img-caption">🏎️ SNIFFER — Completar el circuito</div>
+          </div>
+          <div class="doc-img-wrap">
+            <img src="img/spiddy.png" alt="Póster robot Spiddy" loading="lazy">
+            <div class="doc-img-caption">🕷️ SPIDDY — Llegar primero a la meta</div>
+          </div>
+        </div>
+        <div class="lang-content active" id="lang-es-conc-grupo">
+          <strong>Conclusión del grupo —</strong>
+          El reto tecnológico ha sido una experiencia de aprendizaje altamente enriquecedora, tanto desde el punto de vista técnico como organizativo. El equipo ha tenido que enfrentarse a retos complejos en un entorno de recursos limitados, demostrando capacidad de adaptación, resolución de problemas y toma de decisiones bajo presión.
+          <br><br>
+          Aunque no todos los objetivos planteados inicialmente pudieron completarse en su totalidad dentro del tiempo disponible, los avances logrados en robótica y redes son considerables, y el proyecto ha sido evaluado satisfactoriamente por el tutor responsable.
+          <br><br>
+          La experiencia ha puesto de manifiesto la importancia de una gestión logística eficiente, la necesidad de contar con planes de contingencia ante imprevistos y el valor del trabajo en equipo para superar adversidades. Todos estos aprendizajes resultan de gran utilidad de cara a futuros proyectos de mayor envergadura.
+        </div>
+        <div class="lang-content" id="lang-eu-conc-grupo">
+          <strong>Taldearen ondorioa —</strong>
+          Erronka teknologiko hau ikaskuntza-esperientzia aberasgarri oso bat izan da, bai alderdi teknikotik, bai antolakuntza ikuspegitik. Taldeak baliabide mugatuak zituen ingurune batean arazo konplexuei aurre egin behar izan zien, egokitzeko gaitasuna, arazoak konpontzeko trebetasuna eta presiopean erabakiak hartzeko adorea erakutsiz.
+          <br><br>
+          Hasierako helburu guztiak ezin baziren ere guztiz bete erabilgarri zegoen denboran, robotikan eta sareetan lortutako aurrerapenak nabarmenak dira, eta proiektua tutorea arduradunaren aldetik gogobetez ebaluatu da.
+          <br><br>
+          Esperientziak logistikaren kudeaketa eraginkorren garrantzia nabarmendu du, ezustekoen aurrean kontingentzia-planak izateko beharra eta zailtasunak gainditzeko talde-lanaren balioa. Ikaskuntza hauek guztiak etorkizuneko eskala handiko proiektuetan oso baliagarriak izango dira.
+        </div>
+        <div class="lang-content" id="lang-en-conc-grupo">
+          <strong>Group conclusion —</strong>
+          This technological challenge has been a highly enriching learning experience, both from a technical and an organisational standpoint. The team was required to tackle complex challenges in a resource-constrained environment, demonstrating adaptability, problem-solving ability and sound decision-making under pressure.
+          <br><br>
+          Although not all of the initial objectives could be fully completed within the available time, the progress achieved in both robotics and networking is considerable, and the project has been evaluated satisfactorily by the supervising tutor.
+          <br><br>
+          The experience has highlighted the importance of efficient logistics management, the need for contingency plans when facing unexpected setbacks, and the value of teamwork in overcoming adversity. All of these lessons will prove highly valuable in future, larger-scale projects.
+        </div>
+      </div>
+
+
+      <!-- MIEMBRO 1 -->
+      <div class="miembro-conclusion">
+        <div class="miembro-header">
+          <div class="miembro-avatar">N</div>
+          <div>
+            <div class="miembro-nombre">Naroa</div>
+            <div class="miembro-rol" id="rol1_label">Conclusión individual</div>
+          </div>
+        </div>
+
+        <p class="miembro-texto lang-content active" id="lang-es-m1">
+Este reto tecnológico ha sido una montaña rusa de emociones. Si algo he aprendido en estas semanas es que, por mucho que planifiques, siempre hay factores externos que pueden cambiarlo todo, y lo más importante es cómo reaccionas ante ellos.
+<br><br>
+Como responsable del montaje de los robots, mi "enemigo" principal fue la falta de piezas. Fue muy frustrante sentir que el grupo no avanzaba por mi culpa, cuando en realidad el problema era que el material no llegaba o no era el adecuado, como nos pasó con los motores del Otto. Al final, cuando la placa base empezó a echar humo, me lo tomé con humor. Eran tantas desgracias seguidas que fue como, reír por no llorar; era la única forma de seguir adelante sin desanimarnos del todo.  
+<br><br>
+A pesar de los problemas técnicos, hay dos puntos que me gustaría destacar:
+
+    Aunque mi fuerte era el montaje, estoy muy feliz con el resultado de los carteles y el material visual. No estaba segura de si me quedarían bien, pero al final ver que el proyecto tiene una identidad visual bonita me ha dado mucha satisfacción.  
+<br><br>
+    Soy sincera y admito que me hubiera gustado terminar todos los robots para sacar un 10. Me queda un poco de "espinita" por no haber llegado a la perfección por culpa de los retrasos logísticos, pero entiendo que, dadas las circunstancias, estar aprobados ya es un éxito de equipo.  
+<br><br>
+En resumen, aunque ha sido un proceso difícil y por momentos algo estresante, me quedo con nuestra capacidad para sacar el trabajo adelante y no rendirnos cuando las cosas se pusieron feas.</p>
+
+
+        <p class="miembro-texto lang-content" id="lang-eu-m1">
+Erronka teknologiko hau emozioz beteriko errusiar mendia izan da. Aste hauetan zerbait ikasi badut, planifikatu arren, beti daude dena alda dezaketen kanpoko faktoreak, eta garrantzitsuena da nola erreakzionatzen duzun horien aurrean.
+<br><br>
+Roboten muntaketaren arduradun gisa, piezarik eza izan zen nire "etsai" nagusia. Etsigarria izan zen taldeak nire erruz aurrera egiten ez zuela sentitzea, baina arazoa zen materiala ez zela iristen edo ez zela egokia, Ottoren motorrekin gertatu zitzaigun bezala. Azkenean, plaka nagusia kea botatzen hasi zenean, umoretsu hartu nuen. Hainbeste zoritxar ziren jarraian, ezen negar ez egitearren barre egitea izan baitzen; hori zen aurrera jarraitzeko modu bakarra, gu erabat adoregabetu gabe.
+<br><br>
+Arazo teknikoak gorabehera, bi puntu nabarmendu nahi nituzke:
+Nire indarra muntaketa bazen ere, oso pozik nago kartelen eta ikusizko materialaren emaitzarekin. Ez nekien ondo geratuko ote zitzaizkidan, baina azkenean proiektuak nortasun bisual polita duela ikusteak poz handia eman dit.
+<br><br>
+Zintzoa naiz eta onartzen dut robot guztiak bukatzea gustatuko zitzaidala 10 bat ateratzeko. "Arantza" pixka bat geratzen zait atzerapen logistikoen erruz perfekziora iritsi ez naizelako, baina ulertzen dut, egoera ikusita, onartuta egotea talde-arrakasta bat dela.
+<br><br>
+Laburbilduz, prozesu zaila eta estresagarria izan den arren, lana aurrera ateratzeko eta gauzak itsusitu zirenean amore ez emateko gaitasunarekin geratzen naiz.
+</p>
+
+
+        <p class="miembro-texto lang-content" id="lang-en-m1">
+This technological challenge has been an emotional rollercoaster. If there's one thing I've learned in these weeks, it's that no matter how much you plan, there are always external factors that can change everything, and the most important thing is how you react to them.
+<br><br>
+As the person in charge of assembling the robots, my main "enemy" was the lack of parts. It was very frustrating to feel that the group wasn't making progress because of me, when in reality the problem was that the materials weren't arriving or weren't suitable, as happened with the Otto motors. In the end, when the motherboard started smoking, I took it with humor. There were so many misfortunes in a row that it was like, laugh to avoid crying; it was the only way to keep going without getting completely discouraged.
+<br><br>
+Despite the technical problems, there are two points I would like to highlight:
+
+Although my strength was in editing, I am very happy with the result of the posters and visual material. I wasn't sure if they would turn out well, but in the end, seeing that the project has a beautiful visual identity has given me a lot of satisfaction.
+<br><br>
+I am honest and admit that I would have liked to finish all the robots to get a 10. I have a bit of a "thorn" left for not having reached perfection due to logistical delays, but I understand that, given the circumstances, being approved is already a team success.
+<br><br>
+In summary, although it has been a difficult and at times somewhat stressful process, I take away our ability to get the job done and not give up when things got tough.</p>
+      </div>
+
+
+      <!-- MIEMBRO 2 -->
+      <div class="miembro-conclusion">
+        <div class="miembro-header">
+          <div class="miembro-avatar">M</div>
+          <div>
+            <div class="miembro-nombre">Miguel</div>
+            <div class="miembro-rol" id="rol2_label">Conclusión individual</div>
+          </div>
+        </div>
+        <p class="miembro-texto lang-content active" id="lang-es-m2">
+Si tuviera que describir esta experiencia con una sola palabra, sería adaptación.
+<br><br>
+Desde el principio, el proyecto estuvo lleno de problemas que no dependían de nosotros. El momento más difícil fue ver cómo la placa del robot Otto empezaba a echar humo. Después de tantos retrasos con las piezas y los materiales, me entraron ganas de dejarlo todo. Fue muy frustrante ver que el robot fallaba justo cuando empezábamos a avanzar. Aun así, decidí mantener la calma para que el equipo no se viniera abajo y pudimos buscar soluciones juntos.
+<br><br>
+En cuanto a lo técnico, me quedo con dos sensaciones muy distintas:
+
+Orgullo: Conseguir que el robot seguidor de líneas funcionara fue mi mayor satisfacción ya que descubrimos que el problema era que los sensores estaban rotos, no que hubiera fallos en mi programación. Tuvimos que resolver varios obstáculos hasta lograrlo, y eso me dio mucha satisfacción personal.
+<br><br>
+Frustración: Lo que más me molestó fue el desorden con los materiales, sobre todo recibir piezas equivocadas que nos hicieron perder tiempo sin necesidad.
+<br><br>
+Por último, estoy de acuerdo con la decisión que tomamos al final. Con el proyecto ya aprobado, centrar los esfuerzos en la documentación y la presentación fue lo más sensato para sacar una buena nota ya que con robots no nos iba a dar tiempo a sumar mas calificación. Aunque me hubiera gustado que todo funcionara a la perfección, he aprendido que saber organizarse y gestionar el tiempo es igual de importante que saber construir o programar.</p>
+
+
+        <p class="miembro-texto lang-content" id="lang-eu-m2">
+Esperientzia hau hitz bakar batez deskribatu beharko banu, egokitzapena litzateke.
+<br><br>
+Hasieratik, proiektua gure esku ez zeuden arazoz beteta egon zen. Unerik zailena Otto robotaren plaka kea botatzen hasi zela ikustea izan zen. Piezak eta materialak hainbeste atzeratu ondoren, dena uzteko gogoa sortu zitzaidan. Oso etsigarria izan zen ikustea robotak huts egiten zuela aurrera egiten hasi ginenean. Hala ere, lasaitasunari eustea erabaki nuen, taldea behera etor ez zedin, eta elkarrekin konponbideak bilatu ahal izan genituen.
+<br><br>
+Arlo teknikoari dagokionez, bi sentsazio oso ezberdinekin geratzen naiz:
+
+Harrotasuna: Nire gogobetetasunik handiena lineen jarraitzaile robotak funtziona zezan lortzea izan zen; izan ere, jakin genuen arazoa sentsoreak hautsita zeudela, eta ez nire programazioan akatsik egotea. Hainbat oztopo konpondu behar izan genituen hori lortu arte, eta horrek poz pertsonal handia eman zidan.
+<br><br>
+Frustrazioa: Materialekiko desordenak gogaitu ninduen gehien, batez ere beharrik gabe denbora galarazi ziguten pieza okerrak jasotzeak.
+<br><br>
+Azkenik, ados nago azkenean hartu genuen erabakiarekin. Proiektua onartuta, dokumentazioan eta aurkezpenean zentratzea izan zen zentzuzkoena nota ona ateratzeko, robotekin ez baikenuen denborarik izango kalifikazio gehiago lortzeko. Denak primeran funtzionatzea gustatuko litzaidakeen arren, ikasi dut antolatzen eta denbora kudeatzen jakitea eraikitzen edo programatzen jakitea bezain garrantzitsua dela.
+
+</p>
+        <p class="miembro-texto lang-content" id="lang-en-m2">
+This technological challenge has been an emotional rollercoaster. If there's one thing I've learned in these weeks, it's that no matter how much you plan, there are always external factors that can change everything, and the most important thing is how you react to them.
+<br><br>
+As the person responsible for assembling the robots, my main "enemy" was the lack of parts. It was very frustrating to feel that the group wasn't making progress because of me, when in reality the problem was that the materials weren't arriving or weren't suitable, as happened with the Otto motors. In the end, when the motherboard started smoking, I took it with humor. There were so many misfortunes in a row that it was like, laugh to avoid crying; it was the only way to keep going without getting completely discouraged.
+<br><br>
+Despite the technical issues, there are two points I would like to highlight:
+
+Although my strength was in editing, I am very happy with the result of the posters and visual material. I wasn't sure if they would turn out well, but in the end, seeing that the project has a beautiful visual identity has given me a lot of satisfaction.
+<br><br>
+I am honest and admit that I would have liked to finish all the robots to get a 10. I have a bit of a "thorn" left for not having achieved perfection due to logistical delays, but I understand that, given the circumstances, being approved is already a team success.
+<br><br>
+In summary, although it has been a difficult and at times somewhat stressful process, I am left with our ability to get the job done and not give up when things got tough. If I had to describe this experience in one word, it would be adaptation.
+<br><br>
+From the beginning, the project was full of problems that were beyond our control. The hardest moment was seeing the robot Otto's board start to smoke. After so many delays with the parts and materials, I felt like giving up. It was very frustrating to see the robot fail just when we were starting to make progress. Even so, I decided to stay calm so that the team wouldn't fall apart, and we could look for solutions together.
+<br><br>
+Regarding the technical aspects, I am left with two very different feelings:
+
+Pride: Getting the line-following robot to work was my greatest satisfaction since we discovered that the problem was that the sensors were broken, not that there were flaws in my programming. We had to overcome several obstacles to achieve it, and that gave me a lot of personal satisfaction.
+<br><br>
+Frustration: What bothered me the most was the disorganization with the materials, especially receiving the wrong pieces that made us waste time unnecessarily.
+<br><br>
+Finally, I agree with the decision we made in the end. With the project already approved, focusing efforts on documentation and presentation was the most sensible choice to get a good grade since with robots, we wouldn't have had time to add more to our score. Although I would have liked everything to work perfectly, I have learned that knowing how to organize and manage time is just as important as knowing how to build or program.</p>
+      </div>
+
+      <!-- MIEMBRO 3 -->
+      <div class="miembro-conclusion">
+        <div class="miembro-header">
+          <div class="miembro-avatar">J</div>
+          <div>
+            <div class="miembro-nombre">Jon</div>
+            <div class="miembro-rol" id="rol2_label">Conclusión individual</div>
+          </div>
+        </div>
+        <p class="miembro-texto lang-content active" id="lang-es-m2">
+Este proyecto ha sido una prueba de paciencia. Si tuviera que resumir mi experiencia, diría que ha sido un proceso de prueba y error constante terminando con esa sensación de "estoy harto, pero al menos he aprendido mucho". Desde el principio las cosas se torcieron mi actitud durante las esperas fue simplemente la de esperar con paciencia; como no podíamos avanzar sin el material, no quedaba otra que mantener la calma hasta que llegaran las piezas, aunque hubo momentos algo tensos como cuando la placa base empezó a soltar humo, mi primer pensamiento fue: "hasta aquí hemos llegado", la verdad es que pense que tendriamos que montar otra placa lo cual aunque no sea algo muy complicado pues entre que llegaba y todo pense que igual estaríamos ese día entero o más sin avanzar nada, y en cuanto a la parte técnica, fue lo peor sin duda: los motores que no giraban 360 grados, fue bastante frustrante tener que parar todo el montaje del robot Otto por un error en las especificaciones de los componentes, lo que más orgullo me dio fue arreglar el código del zig-zag para que el robot esquivara obstáculos, ver que el código funcionaba después de tantas vueltas fue el mejor momento del reto, sobre el final del proyecto, aunque estoy de acuerdo con la estrategia del equipo de asegurar el aprobado con el marketing y las redes sociales, me hubiera gustado terminar todos los robots al cien por cien, me queda esa sensacion de haber podido terminarlo del todo, pero me voy satisfecho por haber sabido resolver problemas bajo presión y por todo lo que he aprendido sobre hardware y programación en situaciones críticas.
+</p>
+
+
+        <p class="miembro-texto lang-content" id="lang-eu-m2">
+
+Proiektu hau pazientziaren froga bat izan da. Nire esperientzia laburbildu beharko banu, esango nuke etengabeko proba eta errore prozesu bat izan dela, "nazkatuta nago, baina gutxienez asko ikasi dut" sentsazio horrekin amaituz. Hasieratik gauzak okertu egin ziren itxaronaldietan nire jarrera pazientziaz itxarotea besterik ez zen izan; materialik gabe aurrera egin ezin genuenez, lasai egotea besterik ez zen geratzen piezak iritsi arte, nahiz eta une batzuk tentsioz beteta egon ziren, hala nola oinarrizko plaka kea askatzen hasi zenean. Nire lehen pentsamendua hau izan zen: "honaino iritsi gara". Egia esan, pentsatu nuen beste plaka bat muntatu behar izan genuela, eta hori oso zaila izan ez arren, zeren eta iristen ari nintzen eta dena pentsatzen zen egun hori osorik edo ezer aurreratu gabe egongo ginela, eta alde teknikoari dagokionez, berriz, 360 gradu egiten ez ziren motorrak, nahiko frustragarria izan zen.
+
+</p>
+        <p class="miembro-texto lang-content" id="lang-en-m2">
+This project has been a test of patience. If I had to sum up my experience, I would say it’s been a constant process of trial and error ending with that feeling of "I’m fed up, but at least I’ve learned a lot", from the beginning things got twisted my attitude during the waiting was simply to wait patiently; since we couldn’t move forward without the material, there was nothing left but to remain calm until the pieces arrived, although there were moments a bit tense like when the motherboard began to release smoke, my first thought was: "Here we have come.", the truth is that I think we had to install another plate, which, even if it’s not very complicated, because between then and then everything, I thought we’d still be all day or more without making any progress, and as for the technical part, it was definitely the worst, the engines that didn’t turn 360 degrees, it was quite frustrating to have to stop the whole assembly of the Otto robot because of a mistake in the specifications of the components, what gave me the most pride was to fix the code of the zig-zag so that the robot avoids obstacles, seeing that the code worked after so many rounds was the best moment of the challenge, about the end of the project, although I agree with the team’s strategy of ensuring approval with marketing and social media, I would have liked to finish all the robots 100%, I still have this feeling of being able to finish it completely, but I am satisfied for having been able to solve problems under pressure and for everything I have learned about hardware and programming in critical situations.
+</p>
+      </div>
+
+<footer>
+  <div class="footer-marca">
+    <span class="logo-dot"></span>
+    RobotALMI
+  </div>
+  <div class="footer-meta">
+    SMR1 · Centro de Estudios ALMI · Bilbao<br>
+    Reto 5 — Curso 25-26
+  </div>
+</footer>
+
+<script src="js/idiomas.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
